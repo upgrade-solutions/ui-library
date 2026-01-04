@@ -58,6 +58,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
               checkboxSizes[size],
               className
             )}
+            aria-invalid={!!error}
             {...props}
           />
           {label && (
