@@ -55,6 +55,40 @@ describe('Checkbox', () => {
     expect(screen.getByText('This field is required')).toBeInTheDocument()
   })
 
+  it('sets aria-invalid when error is present', () => {
+    render(<Checkbox label="Test" error="This field is required" />)
+    const checkbox = screen.getByRole('checkbox')
+    expect(checkbox).toHaveAttribute('aria-invalid', 'true')
+  })
+
+  it('does not set aria-invalid when no error', () => {
+    render(<Checkbox label="Test" />)
+    const checkbox = screen.getByRole('checkbox')
+    expect(checkbox).not.toHaveAttribute('aria-invalid')
+  })
+
+  it('associates error message with checkbox via aria-describedby', () => {
+    render(<Checkbox label="Test" error="This field is required" />)
+    const checkbox = screen.getByRole('checkbox')
+    const errorMessage = screen.getByText('This field is required')
+    
+    const describedById = checkbox.getAttribute('aria-describedby')
+    expect(describedById).toBeTruthy()
+    expect(errorMessage).toHaveAttribute('id', describedById)
+  })
+
+  it('error message has role="alert" for screen readers', () => {
+    render(<Checkbox label="Test" error="This field is required" />)
+    const errorMessage = screen.getByRole('alert')
+    expect(errorMessage).toHaveTextContent('This field is required')
+  })
+
+  it('does not set aria-describedby when no error', () => {
+    render(<Checkbox label="Test" />)
+    const checkbox = screen.getByRole('checkbox')
+    expect(checkbox).not.toHaveAttribute('aria-describedby')
+  })
+
   it('applies different sizes', () => {
     const { rerender } = render(<Checkbox size="sm" />)
     let checkbox = screen.getByRole('checkbox')
