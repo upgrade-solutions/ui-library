@@ -96,9 +96,9 @@ export const Text = React.forwardRef<HTMLElement, TextProps>(
       getColorClass(color),
       getWeightClass(weight),
       {
-        italic: italic,
-        underline: underline,
-        truncate: truncate,
+        italic,
+        underline,
+        truncate,
       },
       className
     );
