@@ -11,6 +11,9 @@ export type { InputProps, InputSize, InputVariant } from './components/Input'
 export { Checkbox } from './components/Checkbox'
 export type { CheckboxProps, CheckboxSize } from './components/Checkbox'
 
+export { Radio, RadioGroup } from './components/Radio'
+export type { RadioProps, RadioGroupProps, RadioSize } from './components/Radio'
+
 export { Text, Heading } from './components/Typography'
 export type {
   TextProps,
