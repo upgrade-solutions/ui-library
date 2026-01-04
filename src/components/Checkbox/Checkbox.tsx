@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useRef } from 'react'
+import { forwardRef, useEffect, useId, useRef } from 'react'
 import { cn } from '@/utils/cn'
 import { CheckboxProps } from './Checkbox.types'
 
@@ -37,7 +37,9 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       }
     }, [indeterminate, checkboxRef])
 
-    const generatedId = id || `checkbox-${Math.random().toString(36).substr(2, 9)}`
+    const defaultId = useId()
+    const checkboxId = id || defaultId
+    const errorId = `${checkboxId}-error`
 
     return (
       <div className="flex flex-col gap-1">
@@ -45,8 +47,10 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           <input
             ref={checkboxRef}
             type="checkbox"
-            id={generatedId}
+            id={checkboxId}
             disabled={disabled}
+            aria-describedby={error ? errorId : undefined}
+            aria-invalid={error ? 'true' : undefined}
             className={cn(
               'rounded border-2 border-gray-300',
               'text-primary-600',
@@ -63,7 +67,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           />
           {label && (
             <label
-              htmlFor={generatedId}
+              htmlFor={checkboxId}
               className={cn(
                 'select-none cursor-pointer',
                 'text-gray-700',
@@ -76,7 +80,11 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             </label>
           )}
         </div>
-        {error && <span className="text-sm text-red-600">{error}</span>}
+        {error && (
+          <span id={errorId} className="text-sm text-red-600" role="alert">
+            {error}
+          </span>
+        )}
       </div>
     )
   }
