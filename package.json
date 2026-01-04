@@ -27,7 +27,9 @@
     "format": "prettier --write \"src/**/*.{ts,tsx,json,css,md}\"",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "copilot": "./run-copilot.sh",
+    "copilot:safe": "./run-copilot-safe.sh"
   },
   "keywords": [
     "react",
