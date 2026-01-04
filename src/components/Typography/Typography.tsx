@@ -138,9 +138,9 @@ export const Heading = React.forwardRef<HTMLElement, HeadingProps>(
       getColorClass(color),
       getWeightClass(weight),
       {
-        italic: italic,
-        underline: underline,
-        truncate: truncate,
+        italic,
+        underline,
+        truncate,
       },
       className
     );
