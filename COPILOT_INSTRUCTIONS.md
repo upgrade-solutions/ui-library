@@ -146,6 +146,7 @@ src/components/[ComponentName]/
    - Request code review
    - Link to any related issues
    - Include screenshots from Storybook if applicable
+   - Change back to `main` branch for future features
 
 ### Step 7: After PR Approval
 1. Merge PR to main branch
